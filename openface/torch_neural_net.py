@@ -112,10 +112,10 @@ cmd: {}
 stdout: {}
 """.format(self.cmd, self.p.stdout.read()))
 
-        self.p.stdin.write(imgPath + "\n")
+        self.p.stdin.write((imgPath + "\n").encode())
         output = self.p.stdout.readline()
         try:
-            rep = [float(x) for x in output.strip().split(',')]
+            rep = [float(x) for x in output.strip().split(b',')]
             rep = np.array(rep)
             return rep
         except Exception as e:
